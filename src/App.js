@@ -4,6 +4,13 @@ import TextBox from "./components/TextBox";
 import Alert from "./components/Alert";
 import About from "./components/About";
 
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from "react-router-dom";
+
+
 
 function App() {
 
@@ -33,10 +40,31 @@ function App() {
   
   return (
     <>
-    <Navbar title="TextUtils" toggleMode={toggleMode} mode={mode}/>
-    <Alert alert={alerts} />
-    <TextBox heading='Enter your text to Analysis.' showAlert={showAlert} mode={mode} />
-    <About mode={mode} />
+    
+
+    <Router>
+      <Routes>
+        <Route path="/" element={
+          <>
+          <Navbar title="TextUtils" toggleMode={toggleMode} mode={mode}/>
+          <Alert alert={alerts} />
+          <TextBox heading='Enter your text to Analysis.' showAlert={showAlert} mode={mode} />
+          </>
+        } />
+
+        <Route path="/home" element={
+          <>
+          <Navbar title="TextUtils" toggleMode={toggleMode} mode={mode}/>
+          <Alert alert={alerts} />
+          <TextBox heading='Enter your text to Analysis.' showAlert={showAlert} mode={mode} />
+          </>
+        } />
+
+        <Route path="/about" element={<About mode={mode} />} />
+      </Routes>
+    </Router>
+
+    
     </>
   );
 }

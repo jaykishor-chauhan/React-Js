@@ -12,7 +12,7 @@ function About(props) {
       }
       
   return (
-    <div className="accordion container" id="accordionExample">
+    <div className="accordion container m-5" id="accordionExample">
         <h1 className={`text-${props.mode === 'dark'?'white':'black'}`}>About Textutil</h1>
     <div className="accordion-item">
         <h2 className="accordion-header">
