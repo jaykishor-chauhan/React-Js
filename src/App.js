@@ -1,7 +1,10 @@
+import { useState } from "react";
 import Navbar from "./components/Navbar";
 import TextBox from "./components/TextBox";
 import Alert from "./components/Alert";
-import { useState } from "react";
+import About from "./components/About";
+
+
 function App() {
 
   // Alert 
@@ -33,6 +36,7 @@ function App() {
     <Navbar title="TextUtils" toggleMode={toggleMode} mode={mode}/>
     <Alert alert={alerts} />
     <TextBox heading='Enter your text to Analysis.' showAlert={showAlert} mode={mode} />
+    <About mode={mode} />
     </>
   );
 }

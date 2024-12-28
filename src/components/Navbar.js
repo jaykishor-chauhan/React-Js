@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 
 export default function Navbar(props) {
-    console.log(props.mode);
+
     return (
         <section>
             <nav className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode}`}>

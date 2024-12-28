@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from "react"
+import  '../App.css';
 
 export default function TextBox(props) {
   
@@ -30,6 +31,7 @@ export default function TextBox(props) {
     let cpyText = document.getElementById('textBox');
     cpyText.select();
     navigator.clipboard.writeText(cpyText.value);
+    document.getSelection().removeAllRanges();
     props.showAlert('Text has successfully copied to clipboard.', 'success');
   }
 
@@ -38,28 +40,39 @@ export default function TextBox(props) {
     props.showAlert('Extra space has been successfully removed from text.', 'success');
   }
 
+
+  const darkStyle = {
+    backgroundColor: '#5e6060',
+    color: 'white'
+  }
+  const lightStyle ={
+    backgroundColor: 'white',
+    color: 'black'
+  }
+
   
   return (
     <div>
-      <div className={`mb-3 container mt-3 text-${props.mode === 'light'?'dark' : 'light'}`}>
+      <div className={`mb-3 container mt-5 text-${props.mode === 'light'?'dark' : 'light'}`}>
         <h2 className={`text-${props.mode === 'light'?'dark' : 'light'}`}>{props.heading}</h2>
         <textarea 
-          className="form-control" 
+          className="form-control placeholder" 
+          style={props.mode === 'dark' ? darkStyle:lightStyle}
           id="textBox" 
           placeholder='Enter your text here..' 
           value={text} 
           onChange={handleOnChange} 
           rows="8">  
         </textarea>
-        <button className='btn btn-primary m-2' onClick={converToUppercase}>Convert to Uppercase</button>
-        <button className='btn btn-primary m-2' onClick={converToLowercase}>Convert to Lowercase</button>
-        <button className='btn btn-primary m-2' onClick={restText}>Reset</button>
-        <button className='btn btn-primary m-2' onClick={copyText}>Copy Text</button>
-        <button className='btn btn-primary m-2' onClick={removeExtraSpacr}>Remove extra space</button>
+        <button className='btn btn-primary m-2' disabled={text.length === 0} onClick={converToUppercase}>Convert to Uppercase</button>
+        <button className='btn btn-primary m-2' disabled={text.length === 0} onClick={converToLowercase}>Convert to Lowercase</button>
+        <button className='btn btn-primary m-2' disabled={text.length === 0} onClick={restText}>Reset</button>
+        <button className='btn btn-primary m-2' disabled={text.length === 0} onClick={copyText}>Copy Text</button>
+        <button className='btn btn-primary m-2' disabled={text.length === 0} onClick={removeExtraSpacr}>Remove extra space</button>
         <h2 className='mt-3'>Text Summary</h2>
-        <p>Words: {text.split(" ").length} and Character: {text.length}</p>
+        <p>Words: {text.length>0 ? text.trim().split(/\s+/).length : 0} and Character: {text.length}</p>
         <h2>Preview</h2>
-        <p>{text.length > 0 ? text:'Enter some text for preview.'}</p>
+        <p>{text.length > 0 ? text:'Nothing to preview.'}</p>
       </div>
     </div>
   )
