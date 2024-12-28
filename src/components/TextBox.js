@@ -41,10 +41,17 @@ export default function TextBox(props) {
   
   return (
     <div>
-      <div className="mb-3 container mt-3">
-        <h2>{props.heading}</h2>
-        <textarea className="form-control" id="textBox" placeholder='Enter your text here..' value={text} onChange={handleOnChange} rows="8"></textarea>
-        <button className='btn btn-primary m-2' onClick={converToUppercase} alert={alert}>Convert to Uppercase</button>
+      <div className={`mb-3 container mt-3 text-${props.mode === 'light'?'dark' : 'light'}`}>
+        <h2 className={`text-${props.mode === 'light'?'dark' : 'light'}`}>{props.heading}</h2>
+        <textarea 
+          className="form-control" 
+          id="textBox" 
+          placeholder='Enter your text here..' 
+          value={text} 
+          onChange={handleOnChange} 
+          rows="8">  
+        </textarea>
+        <button className='btn btn-primary m-2' onClick={converToUppercase}>Convert to Uppercase</button>
         <button className='btn btn-primary m-2' onClick={converToLowercase}>Convert to Lowercase</button>
         <button className='btn btn-primary m-2' onClick={restText}>Reset</button>
         <button className='btn btn-primary m-2' onClick={copyText}>Copy Text</button>
