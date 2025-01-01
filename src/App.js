@@ -60,7 +60,13 @@ function App() {
           </>
         } />
 
-        <Route path="/about" element={<About mode={mode} />} />
+        <Route path="/about" element={
+          <>
+          <Navbar title="TextUtils" toggleMode={toggleMode} mode={mode}/>
+          <About mode={mode} />
+          </>
+          } 
+        />
       </Routes>
     </Router>
 
